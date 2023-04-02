@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gymapp/blocs/workouts_cubits.dart';
 import 'package:gymapp/models/workout.dart';
+import 'package:gymapp/screens/home_page.dart';
 
 void main() {
   runApp(const WorkoutTime());
@@ -17,7 +18,7 @@ class WorkoutTime extends StatelessWidget {
       title: 'My Workouts',
       theme: ThemeData(
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
 
         textTheme: const TextTheme(
           bodyMedium: TextStyle(color:Color.fromARGB(255, 66, 74, 96))
@@ -35,7 +36,7 @@ class WorkoutTime extends StatelessWidget {
         },
         child: BlocBuilder<WorkoutsCubit, List<Workout>>(
           builder: (context,state){
-            return const Text("HI FFF");
+            return const HomePage();
           }
         )
       ),
