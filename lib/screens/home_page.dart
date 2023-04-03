@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gymapp/blocs/workout_cubit.dart';
 import 'package:gymapp/blocs/workouts_cubits.dart';
+import 'package:gymapp/helpers.dart';
 import 'package:gymapp/models/workout.dart';
 
 class HomePage extends StatefulWidget {
@@ -34,7 +36,12 @@ class _HomePageState extends State<HomePage> {
                   visualDensity: const VisualDensity(
                     horizontal: 0,vertical: VisualDensity.maximumDensity
                   ),
-                  leading:  const IconButton(onPressed: null, icon: Icon(Icons.edit)),
+                  leading:   IconButton(
+                      onPressed:() {
+                        BlocProvider.of<WorkoutCubit>(context).editWorkout(workout, workouts.indexOf(workout));
+                      },
+                      icon: const Icon(Icons.edit)),
+                  trailing: Text(formatTime(workout.getTotalTime(), true)),
                   // String? _title = e.title;
                   title: Text(workout.title!),
 
@@ -49,10 +56,14 @@ class _HomePageState extends State<HomePage> {
                           visualDensity: const VisualDensity(
                               horizontal: 0,vertical: VisualDensity.maximumDensity
                           ),
-                          leading:  const IconButton(onPressed: null, icon: Icon(Icons.edit)),
+                          leading:  Text(formatTime(workout.exercises[index].prelude!,true)),
+
                           // String? _title = e.title;
 
                           title: Text(workout.exercises[index].title!),
+                          trailing: Text(formatTime(workout.exercises[index].prelude!, true)),
+
+
                         )
 
                 )

@@ -11,16 +11,24 @@ class Workout extends Equatable{
     int startTime =0;
 
     for(var ex in(json['exercises'] as Iterable) ){
-      exercises.add(Exercise.fromJson(json, index, startTime));
+      exercises.add(Exercise.fromJson(ex, index, startTime));
       index++;
-      var duration = exercises.last.duration??0;
+      int prelude = exercises.last.prelude!;
+      // print(exercises.last.prelude);
+      // print(exercises.last.duration);
+       int duration = exercises.last.duration!;
       print("well this is $index");
 
-      startTime += exercises.last.prelude??0 + duration;
+      startTime += prelude + duration;
+      print(startTime);
     }
-      return Workout(title: json['title'] as String, exercises: exercises);
+      return Workout(title: json['title'] as String?, exercises: exercises);
   }
 Map<String,dynamic>toJson()=>{'title':title,'exercises':exercises};
+  int getTotalTime(){
+    int time = exercises.fold(0, (previousValue, ex) => previousValue + ex.duration! + ex.prelude!);
+    return time;
+  }
 
   @override
   // TODO: implement props
