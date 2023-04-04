@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gymapp/blocs/workout_cubit.dart';
+import 'package:gymapp/blocs/workouts_cubits.dart';
 import 'package:gymapp/models/workout.dart';
 
 class EditExerciseScreen extends StatefulWidget {
@@ -46,6 +49,11 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
                   textAlign: TextAlign.center,
                   controller: _title,
                   onChanged: (value)=>setState(() {
+                    widget.workout!.exercises[widget.exIndex!]
+                    =
+                    widget.workout!.exercises[widget.exIndex!].copyWith(title: value);
+
+                    BlocProvider.of<WorkoutsCubit>(context).saveWorkout(widget.workout!, widget.index);
 
                   }),
                 )

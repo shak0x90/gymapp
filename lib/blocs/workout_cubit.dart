@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gymapp/models/exercise.dart';
 import 'package:gymapp/models/workout.dart';
 import 'package:gymapp/states/workoutState.dart';
 class WorkoutCubit extends Cubit<WorkoutSate>{
@@ -15,6 +16,8 @@ class WorkoutCubit extends Cubit<WorkoutSate>{
   goHome(){
     emit( const WorkoutInitial());
   }
+
+
 
 
 }
